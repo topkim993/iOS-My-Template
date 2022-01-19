@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="Template" customModuleProvider="target">
+            <connections>
+                <outlet property="closeButton" destination="Rdd-Ob-HSD" id="ZKp-ke-Cbc"/>
+                <outlet property="createdAtLabel" destination="8Bl-Pa-SjB" id="uPN-5p-AIG"/>
+                <outlet property="titleImageView" destination="6c0-yP-rvH" id="Uun-Qb-Rj8"/>
+                <outlet property="titleLabel" destination="bin-A0-kmZ" id="H4F-ja-2vj"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6c0-yP-rvH" customClass="AnimatedImageView" customModule="Kingfisher">
+                    <rect key="frame" x="0.0" y="241" width="414" height="414"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="6c0-yP-rvH" secondAttribute="height" multiplier="1:1" id="535-yZ-Hu2"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bin-A0-kmZ">
+                    <rect key="frame" x="16" y="671" width="382" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Bl-Pa-SjB">
+                    <rect key="frame" x="370" y="826.5" width="28" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdd-Ob-HSD">
+                    <rect key="frame" x="4" y="48" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="dUF-Cv-Ich"/>
+                        <constraint firstAttribute="height" constant="48" id="twT-6d-KS7"/>
+                    </constraints>
+                    <color key="tintColor" systemColor="labelColor"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="xmark" catalog="system"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="bin-A0-kmZ" firstAttribute="top" secondItem="6c0-yP-rvH" secondAttribute="bottom" constant="16" id="9IJ-Nm-CJV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="8Bl-Pa-SjB" secondAttribute="bottom" constant="16" id="ABW-qz-n0X"/>
+                <constraint firstItem="8Bl-Pa-SjB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="CVv-1S-45r"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bin-A0-kmZ" secondAttribute="trailing" constant="16" id="CdQ-11-Ay7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8Bl-Pa-SjB" secondAttribute="trailing" constant="16" id="NEj-4a-Mxy"/>
+                <constraint firstItem="bin-A0-kmZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Tam-gU-xza"/>
+                <constraint firstItem="Rdd-Ob-HSD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="4" id="YQt-Jn-Esw"/>
+                <constraint firstItem="6c0-yP-rvH" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ZYx-sB-rdc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6c0-yP-rvH" secondAttribute="trailing" id="ZeQ-1S-lSQ"/>
+                <constraint firstItem="6c0-yP-rvH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eDv-m2-jeo"/>
+                <constraint firstItem="Rdd-Ob-HSD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="4" id="gfi-3E-xI1"/>
+                <constraint firstItem="8Bl-Pa-SjB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="bin-A0-kmZ" secondAttribute="bottom" constant="16" id="qn9-nY-KbC"/>
+            </constraints>
+            <point key="canvasLocation" x="132" y="103"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

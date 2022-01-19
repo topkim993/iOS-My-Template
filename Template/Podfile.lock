@@ -1,0 +1,46 @@
+PODS:
+  - Alamofire (5.4.3)
+  - AlamofireNetworkActivityLogger (3.4.0):
+    - Alamofire (~> 5.4.0)
+  - Kingfisher (6.3.0)
+  - RxAlamofire (6.1.1):
+    - RxAlamofire/Core (= 6.1.1)
+  - RxAlamofire/Core (6.1.1):
+    - Alamofire (~> 5.4)
+    - RxSwift (~> 6.0)
+  - RxCocoa (6.1.0):
+    - RxRelay (= 6.1.0)
+    - RxSwift (= 6.1.0)
+  - RxRelay (6.1.0):
+    - RxSwift (= 6.1.0)
+  - RxSwift (6.1.0)
+
+DEPENDENCIES:
+  - AlamofireNetworkActivityLogger
+  - Kingfisher
+  - RxAlamofire
+  - RxCocoa
+  - RxSwift
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireNetworkActivityLogger
+    - Kingfisher
+    - RxAlamofire
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+
+SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  AlamofireNetworkActivityLogger: 162ab8aee00e6267a4304d7cc134e13ccfe3bcc5
+  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+  RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
+  RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
+  RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
+  RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
+
+PODFILE CHECKSUM: 013fe2a3bec00daf96af561c0c4efc2f98abff1d
+
+COCOAPODS: 1.11.2
