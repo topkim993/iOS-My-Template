@@ -13,4 +13,7 @@
 
 ## 화면 구성
 ### 검색
+<img width="30%" src="https://user-images.githubusercontent.com/57055565/150152017-661788af-4407-454c-bb6b-989e1867e6ba.PNG"/>
+
 ### 상세
+<img width="30%" src="https://user-images.githubusercontent.com/57055565/150152003-719769f0-8f22-4a0d-abbd-3078c632d103.PNG"/>
