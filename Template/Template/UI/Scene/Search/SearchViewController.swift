@@ -33,7 +33,7 @@ class SearchViewController: BaseViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     
     // MARK: - Internal Property
     
@@ -46,6 +46,8 @@ class SearchViewController: BaseViewController {
     
     private var cellCount = 3
     private var cellSpacing: CGFloat = 1
+    
+    private let refreshControl = UIRefreshControl()
 
     
     // MARK: - Life Cycles.
@@ -84,6 +86,14 @@ class SearchViewController: BaseViewController {
             .subscribe(onNext: { [weak self] text in
                 guard let `self` = self else { return }
                 self.viewModel.newSearch(query: text ?? "")
+            })
+            .disposed(by: disposeBag)
+        
+        refreshControl.rx
+            .controlEvent(.valueChanged)
+            .asDriver()
+            .drive(onNext: {
+                self.viewModel.refresh()
             })
             .disposed(by: disposeBag)
         
@@ -139,7 +149,14 @@ class SearchViewController: BaseViewController {
             .asDriver(onErrorJustReturn: false)
             .drive(onNext: { isLoading in
                 Log.d("isLoadingObservable: \(isLoading)")
-                isLoading ? DialogFactory.showLoading() : DialogFactory.hideLoading()
+                if isLoading {
+                    DialogFactory.showLoading()
+                } else {
+                    DialogFactory.hideLoading()
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
+                    }
+                }
             })
             .disposed(by: disposeBag)
         
@@ -197,18 +214,18 @@ class SearchViewController: BaseViewController {
     private func initGridView() {
         let cellId = String(describing: Cell.self)
         
-        self.collectionView.register(
+        collectionView.register(
             UINib(nibName: cellId, bundle: nil),
             forCellWithReuseIdentifier: cellId
         )
-        self.collectionView.delegate = self
+        collectionView.delegate = self
+        collectionView.refreshControl = refreshControl
         
         guard let flow = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
         flow.minimumInteritemSpacing = CGFloat(self.cellSpacing)
         flow.minimumLineSpacing = CGFloat(self.cellSpacing)
-        
     }
 }
 
