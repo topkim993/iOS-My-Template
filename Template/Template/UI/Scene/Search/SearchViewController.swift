@@ -155,6 +155,7 @@ class SearchViewController: BaseViewController {
                     DialogFactory.hideLoading()
                     if self.refreshControl.isRefreshing {
                         self.refreshControl.endRefreshing()
+                        self.collectionView.contentOffset = .zero
                     }
                 }
             })
