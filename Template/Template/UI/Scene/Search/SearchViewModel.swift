@@ -113,44 +113,31 @@ class SearchViewModel {
     }
     
     private func initFetchLogic() {
-        let updateOb = Observable
+        let newSearchOb = Observable
             .combineLatest(searchQuerySubject, refreshSubject)
+            .do(onNext: { _ in self.isLoadingSubject.onNext(true)})
             .map{ $0.0 }
             .do(onNext: { _ in
                 if self.currentImageForModelList.count > 0 {
                     self.newSearchedSubject.onNext(Void())
                 }
                 self.offset = 0
+            })
+            .flatMap {
+                self.fetchGIFsOb(query: $0)
+            }
+            .do(onNext: { _ in
                 self.currentImageForModelList = []
             })
-
-        Observable
-            .combineLatest(updateOb, fetchMoreSubject)
+                
+        let fetchMoreOb = fetchMoreSubject
+            .withLatestFrom(searchQuerySubject, resultSelector: {$1})
             .do(onNext: { _ in self.isLoadingSubject.onNext(true)})
-            .flatMap{ (query, _) -> Observable<GifSearchResponse> in
-                if query.isEmpty {
-                    return self.gifsDomain.fetchTrendingGIFs(
-                        offset: self.offset,
-                        limit: self.limit
-                    )
-                }
-                else {
-                    return self.gifsDomain.fetchGIFs(
-                        query: query,
-                        offset: self.offset,
-                        limit: self.limit
-                    )
-                }
+            .flatMap {
+                self.fetchGIFsOb(query: $0)
             }
-            .do(onNext: { it in
-                guard it.meta.status == 200 else {
-                    throw NSError(
-                        domain: it.meta.msg,
-                        code: it.meta.status,
-                        userInfo: [NSLocalizedDescriptionKey : it.meta.msg]
-                    )
-                }
-            })
+    
+        Observable.merge(newSearchOb, fetchMoreOb)
             .map{
                 $0.data.map{ it -> ImageForModel in
                     let gifImageInfo = it
@@ -199,5 +186,32 @@ class SearchViewModel {
         
     }
   
-    
+    private func fetchGIFsOb(query: String) -> Observable<GifSearchResponse> {
+        return Observable
+            .just(query)
+            .flatMap{ query -> Observable<GifSearchResponse> in
+                if query.isEmpty {
+                    return self.gifsDomain.fetchTrendingGIFs(
+                        offset: self.offset,
+                        limit: self.limit
+                    )
+                }
+                else {
+                    return self.gifsDomain.fetchGIFs(
+                        query: query,
+                        offset: self.offset,
+                        limit: self.limit
+                    )
+                }
+            }
+            .do(onNext: { it in
+                guard it.meta.status == 200 else {
+                    throw NSError(
+                        domain: it.meta.msg,
+                        code: it.meta.status,
+                        userInfo: [NSLocalizedDescriptionKey : it.meta.msg]
+                    )
+                }
+            })
+    }
 }
